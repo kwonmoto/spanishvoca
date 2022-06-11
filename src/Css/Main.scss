@@ -1,0 +1,108 @@
+div {
+    box-sizing: border-box;
+}
+
+.category {
+    border: none;
+    font-size: medium;
+    margin: 15px;
+    padding: 5px;
+    width: 100px;
+    appearance: none;
+    text-align: center;
+}
+
+.Card {
+    display: inline-block;
+    border: 1px none;
+    border-radius: 20px;
+    background-color: rgb(243, 243, 243);
+    color: rgb(67, 67, 67);
+    width: 95%;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(229, 229, 229);
+    }
+
+    .control {
+        float: right;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 20px;
+
+        .icon {
+            margin: 0px 5px;
+
+            &:hover {
+                color: rgb(31, 31, 164);
+            }
+        }
+    }
+    
+    h2 {
+        text-align: left;
+        padding: 0px;
+        margin: 20px;
+    }
+
+    h3 {
+        text-align: left;
+        padding: 0px;
+        margin: 20px;
+    }
+
+    h5 {
+        text-align: left;
+        margin: 15px 20px;
+    }
+}
+
+.List {
+    margin: 0px 30px;
+    height: 60px;
+
+    @mixin nav-component() {
+        float: left;
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        cursor: pointer;
+    }
+
+    /* 상단 네비바 좌우 아이콘 길이 */
+    .checkbox {
+        @include nav-component();
+        width: 15%;
+    }
+
+    /* 상단 네비바 중앙 요소 길이 */
+    .name {
+        @include nav-component();
+        width: 85%;
+        text-align: left;
+    }
+
+    .icon {
+        @include nav-component();
+        float: right;
+        width: 20px;
+        padding: 0px 5px;
+        &:hover {
+            color: rgb(31, 31, 164);
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.WarningMessage {
+    margin: 20px 50px;
+    color: red;
+    text-align: left;
+}

@@ -1,0 +1,27 @@
+// 플로팅 버튼 공통 속성
+@mixin FloatingBtn() {
+  position: fixed; //포인트!
+  line-height: 63px;
+  bottom: 70px; //위치
+  width: 50px;  
+  height: 50px;
+  border-radius: 30%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+// 왼쪽 플로팅 버튼 위치 지정
+.FloatingBtn-first {
+  @include FloatingBtn();
+  right: 100px;  //위치
+}
+
+// 오른쪽 플로팅 버튼 위치 지정
+.FloatingBtn-second {
+  @include FloatingBtn();
+  right: 40px;  //위치
+}

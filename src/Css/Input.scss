@@ -1,0 +1,36 @@
+.container {
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 30px;
+
+    input {
+        box-sizing: border-box;
+        width: 90%;
+        height: 50px;
+        font-size: large;
+        border: none;
+    }
+}
+
+.search-container {
+    box-sizing: border-box;
+    padding: 30px 5px 0px 5px;
+    margin: 0px 30px;
+
+    input {
+        box-sizing: border-box;
+        width: 90%;
+        height: 30px;
+        font-size: large;
+        border: none;
+    }
+}
+
+.category-select {
+    padding: 0px 5px;
+    margin: 0px 50px;
+    text-align: left;
+    color: rgb(31, 31, 164);
+    font-size: large;
+    cursor: pointer;
+}

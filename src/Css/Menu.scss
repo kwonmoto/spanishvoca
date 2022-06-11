@@ -1,0 +1,136 @@
+/* 네비바 공통 속성 */
+@mixin nav-wrapper() {
+  position: fixed;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: white;
+  z-index: 20;
+}
+
+/* 네비바 하단 고정 밑 세로 길이 설정 */
+.bottom-nav-wrapper {
+  @include nav-wrapper();
+  bottom: 0;
+  height: 45px;
+  border-top: 2px solid grey;
+
+  /* nav태그 아래의 div태그들을 수평정렬 및 세로길이 설정 */
+  .link {
+    /* 수평정렬, 3개의 button을 각각 33.3% width만큼 할당 */
+    float: left;
+    width: 33.3%;
+    text-align: center;
+
+    /* 세로길이 설정 */
+    height: 45px;
+    line-height: 45px;
+
+
+      /* 하단 네비바의 메뉴를 눌렀을 때 색상 변경*/
+      .inactive {
+        color: grey;
+      }
+
+      /* 하단 네비바의 메뉴를 눌렀을 때 색상 변경*/
+      .active {
+        color: rgb(31, 31, 164);
+      }
+  }
+}
+
+/* 네비바 상단 고정 밑 세로 길이 설정 */
+.top-nav-wrapper {
+  @include nav-wrapper();
+  top: 0;
+  height: 60px;
+
+  /* 상단 네비바 아이콘 공통 속성 */
+  @mixin nav-component() {
+    float: left;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+  }
+
+  /* 상단 네비바 좌우 아이콘 길이 */
+  .icon {
+    @include nav-component();
+    width: 20%
+  }
+
+  /* 상단 네비바 중앙 요소 길이 */
+  .center {
+    @include nav-component();
+    width: 60%;
+  }
+}
+
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offcanvas {
+  @include flex-center();
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba( 255, 255, 255, 0.9 );
+  z-index: 40;
+  position: fixed;
+  top: 0;
+  flex-direction: column;
+
+  .close-btn {
+    position: fixed;
+    cursor: pointer;
+    margin: 50px 80px;
+    top: 0;
+    right: 0;
+  }
+
+  .menu {
+    @include flex-center();
+    color: black;
+    margin: 10px;
+    font-size: large;
+
+    select {
+      margin: 0px 10px;
+      font-size: larger;
+      padding: 10px 0px;
+      border: none;
+      font-weight: 600;
+      text-align: center;
+      -webkit-appearance: none; /* 크롬 화살표 없애기 */
+      -moz-appearance: none; /* 파이어폭스 화살표 없애기 */
+      appearance: none /* 화살표 없애기 */
+    }
+  }
+
+  .credit {
+    position: fixed;
+    bottom: 0;
+    margin: 50px;
+    cursor: pointer;
+  }
+}
+
+.credit-page {
+  @include flex-center();
+  width: 100vw;
+  height: 80vh;
+  flex-direction: column;
+
+  .row {
+    @include flex-center();
+  
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+    }
+  }
+}
