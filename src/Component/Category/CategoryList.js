@@ -20,11 +20,11 @@ const CategoryList = () => {
 	};
 
 	return (
-		<>
+		<div className="CardList">
 			{categoryList().map(row => {
 				return <List key={row.id} row={row} />;
 			})}
-		</>
+		</div>
 	);
 };
 

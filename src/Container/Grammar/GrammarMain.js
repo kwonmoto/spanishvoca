@@ -22,7 +22,7 @@ const GrammarMain = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="content-container">
 			<SearchForm type="grammar" />
 			<GrammarCard />
 			<PlusBtn link="/grammar/upload" />

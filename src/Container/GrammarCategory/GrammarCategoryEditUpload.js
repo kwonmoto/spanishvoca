@@ -31,7 +31,7 @@ const GrammarCategoryEditUpload = () => {
 	}, []);
 
 	return (
-		<Row>
+		<Row className="content-container">
 			<Col>
 				<InputTextForm title="카테고리 이름을 입력해주세요." optionKey="newCategory" />
 				<WarningMessage message="중복된 카테고리가 있습니다." condition={condition} />

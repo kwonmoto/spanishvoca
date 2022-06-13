@@ -22,7 +22,7 @@ const GrammarCategoryEdit = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="content-container">
 			<SearchForm type="category" />
 			<GrammarCategoryEditList />
 			<PlusBtn link="/grammarcategory/upload" />

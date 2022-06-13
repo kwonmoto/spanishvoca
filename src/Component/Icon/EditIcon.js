@@ -37,7 +37,11 @@ const EditIcon = ({ type, row }) => {
 				return objectEdit();
 		}
 	};
-	return <FontAwesomeIcon icon={faEdit} className="icon" onClick={onClick} />;
+	return (
+		<div className="icon">
+			<FontAwesomeIcon icon={faEdit} onClick={onClick} />
+		</div>
+	);
 };
 
 export default EditIcon;

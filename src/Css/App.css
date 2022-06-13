@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+.transitions-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+}
+.right-enter {
+  transform: translateX(100%);
+}
+
+.right-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.right-exit {
+  transform: translateX(0);
+}
+
+.right-exit-active {
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+}
+
+.outer {
+  width: 100vw;
+  height: calc(100vh - 105px);
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  flex-direction: column; /* default: row */
+  justify-content: center; /* flex direction에 대해서 정렬방식 선택 */
+}

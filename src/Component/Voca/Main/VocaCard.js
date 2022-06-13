@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../../Css/Main.scss';
+import { logFormat } from '../../../Methods';
 import DeleteIcon from '../../Icon/DeleteIcon';
 import EditIcon from '../../Icon/EditIcon';
 
@@ -39,11 +40,11 @@ const VocaCard = () => {
 	});
 
 	return (
-		<>
+		<div className="CardList">
 			{wordList().map(row => {
 				return <Card key={row.id} row={rowIncludeCategoryName(row)} />;
 			})}
-		</>
+		</div>
 	);
 };
 
@@ -55,6 +56,7 @@ const Card = ({ row }) => {
 	return (
 		<div className="Card" onClick={onClick}>
 			<div className="control">
+				<p className="log">{logFormat(row.log.toDate())}</p>
 				<EditIcon type="Word" row={row} />
 				<DeleteIcon type="Word" row={row} />
 			</div>

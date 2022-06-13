@@ -2,7 +2,7 @@
 import './Css/App.css';
 import db from './firebase';
 import VocaMain from './Container/Voca/VocaMain';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import BottomNav from './Container/BottomNav';
 import VocaUpload from './Container/Voca/VocaUpload';
 import TopNav from './Container/TopNav';
@@ -29,9 +29,12 @@ import CategoryEditUpload from './Container/Category/CategoryEditUpload';
 import OffCanvasDelete from './Container/OffCanvasDelete';
 import VocaEdit from './Container/Voca/VocaEdit';
 import GrammarEdit from './Container/Grammar/GrammarEdit';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import LoadingPage from './Container/LoadingPage';
 
 function App() {
 	const dispatch = useDispatch();
+	const location = useLocation();
 
 	const loading = useSelector(state => state.stateOptionReducer).loading;
 
@@ -68,33 +71,37 @@ function App() {
 	return (
 		<div>
 			{loading ? (
-				<div>Now loading...</div>
+				<LoadingPage />
 			) : (
 				<div className="App">
 					<OffCanvasMenu />
 					<OffCanvasDelete />
 					<TopNav />
 					<BottomNav />
-					<Routes>
-						<Route path="/" element={<VocaMain />} />
-						<Route path="/voca" element={<VocaMain />} />
-						<Route path="/voca/upload" element={<VocaUpload />} />
-						<Route path="/voca/edit" element={<VocaEdit />} />
-						<Route path="/category" element={<CategoryMain />} />
-						<Route path="/category/upload" element={<CategoryUpload />} />
-						<Route path="/category/edit" element={<CategoryEdit />} />
-						<Route path="/category/editupload" element={<CategoryEditUpload />} />
-						<Route path="/grammar" element={<GrammarMain />} />
-						<Route path="/grammar/upload" element={<GrammarUpload />} />
-						<Route path="/grammar/edit" element={<GrammarEdit />} />
-						<Route path="/grammarcategory" element={<GrammarCategoryMain />} />
-						<Route path="/grammarcategory/upload" element={<GrammarCategoryUpload />} />
-						<Route path="/grammarcategory/edit" element={<GrammarCategoryEdit />} />
-						<Route path="/grammarcategory/editupload" element={<GrammarCategoryEditUpload />} />
-						<Route path="/game" element={<VocaMain />} />
-						<Route path="/game/play" element={<VocaMain />} />
-						<Route path="/credit" element={<Credit />} />
-					</Routes>
+					<TransitionGroup className="transitions-wrapper">
+						<CSSTransition key={location.pathname} classNames="right" timeout={300}>
+							<Routes location={location}>
+								<Route path="/" element={<VocaMain />} />
+								<Route path="/voca" element={<VocaMain />} />
+								<Route path="/voca/upload" element={<VocaUpload />} />
+								<Route path="/voca/edit" element={<VocaEdit />} />
+								<Route path="/category" element={<CategoryMain />} />
+								<Route path="/category/upload" element={<CategoryUpload />} />
+								<Route path="/category/edit" element={<CategoryEdit />} />
+								<Route path="/category/editupload" element={<CategoryEditUpload />} />
+								<Route path="/grammar" element={<GrammarMain />} />
+								<Route path="/grammar/upload" element={<GrammarUpload />} />
+								<Route path="/grammar/edit" element={<GrammarEdit />} />
+								<Route path="/grammarcategory" element={<GrammarCategoryMain />} />
+								<Route path="/grammarcategory/upload" element={<GrammarCategoryUpload />} />
+								<Route path="/grammarcategory/edit" element={<GrammarCategoryEdit />} />
+								<Route path="/grammarcategory/editupload" element={<GrammarCategoryEditUpload />} />
+								<Route path="/game" element={<VocaMain />} />
+								<Route path="/game/play" element={<VocaMain />} />
+								<Route path="/credit" element={<Credit />} />
+							</Routes>
+						</CSSTransition>
+					</TransitionGroup>
 				</div>
 			)}
 		</div>

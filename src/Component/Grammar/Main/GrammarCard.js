@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../../Css/Main.scss';
+import { logFormat } from '../../../Methods';
 import DeleteIcon from '../../Icon/DeleteIcon';
 import EditIcon from '../../Icon/EditIcon';
 
@@ -58,10 +59,11 @@ const Card = ({ row }) => {
 				<EditIcon type="Grammar" row={row} />
 				<DeleteIcon type="Grammar" row={row} />
 			</div>
-			<h2>{row.sentence}</h2>
+			<p className="log-grammar">{logFormat(row.log.toDate())}</p>
+			<h3>{row.sentence}</h3>
 			{show && (
 				<>
-					<h2>{row.translate}</h2>
+					<h3>{row.translate}</h3>
 					<h5>{row.categoryName}</h5>
 				</>
 			)}

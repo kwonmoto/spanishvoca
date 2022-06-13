@@ -12,6 +12,25 @@ div {
     text-align: center;
 }
 
+.content-container {
+    position: fixed;
+    top: 60;
+    bottom: 45;
+    width: 100vw;
+    height: calc(100vh - 105px);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.CardList {
+    width: 100vw;
+}
+
 .Card {
     display: inline-block;
     border: 1px none;
@@ -46,18 +65,29 @@ div {
     h2 {
         text-align: left;
         padding: 0px;
-        margin: 20px;
+        margin: 15px 20px;
     }
 
     h3 {
         text-align: left;
         padding: 0px;
-        margin: 20px;
+        margin: 15px 20px;
     }
 
     h5 {
         text-align: left;
-        margin: 15px 20px;
+        margin: 10px 20px;
+    }
+
+    .log {
+        font-size: 12px;
+        margin: 0px 5px;
+    }
+
+    .log-grammar {
+        text-align: left;
+        margin: 10px 20px;
+        font-size: 12px;
     }
 }
 
@@ -89,7 +119,7 @@ div {
     .icon {
         @include nav-component();
         float: right;
-        width: 20px;
+        width: 7.5%;
         padding: 0px 5px;
         &:hover {
             color: rgb(31, 31, 164);

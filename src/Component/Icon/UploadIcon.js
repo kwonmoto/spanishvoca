@@ -2,7 +2,8 @@ import db from '../../firebase';
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { clearInputOption } from '../../redux/State/InputOption/reducer';
+import { clearInputOption, setInputOption } from '../../redux/State/InputOption/reducer';
+import { setStateOption } from '../../redux/State/StateOption/reducer';
 
 const UploadIcon = ({ type }) => {
 	// redux dispatch
@@ -24,6 +25,7 @@ const UploadIcon = ({ type }) => {
 				category: stateOption.category,
 				log: new Date(),
 			});
+			dispatch(clearInputOption());
 		} else if (type === 'vocaEdit') {
 			const vocaRef = doc(db, 'Word', inputOption.id);
 			updateDoc(vocaRef, {
@@ -32,6 +34,7 @@ const UploadIcon = ({ type }) => {
 				example: inputOption.example,
 				category: stateOption.category,
 			});
+			dispatch(clearInputOption());
 		} else if (type === 'grammar') {
 			const grammarCollection = collection(db, 'Grammar');
 			addDoc(grammarCollection, {
@@ -40,6 +43,7 @@ const UploadIcon = ({ type }) => {
 				category: stateOption.grammarCategory,
 				log: new Date(),
 			});
+			dispatch(clearInputOption());
 		} else if (type === 'grammarEdit') {
 			const grammarRef = doc(db, 'Grammar', inputOption.id);
 			updateDoc(grammarRef, {
@@ -47,31 +51,40 @@ const UploadIcon = ({ type }) => {
 				translate: inputOption.translate,
 				category: stateOption.category,
 			});
+			dispatch(clearInputOption());
 		} else if (type === 'category') {
 			const categoryCollection = collection(db, 'WordCategory');
 			addDoc(categoryCollection, {
 				name: inputOption.newCategory,
 				nan: 2,
 			});
+			dispatch(setInputOption('newCategory', ''));
+			dispatch(setInputOption('originalCategory', ''));
 		} else if (type === 'categoryEdit') {
 			const categoryRef = doc(db, 'WordCategory', inputOption.id);
 			updateDoc(categoryRef, {
 				name: inputOption.newCategory,
 			});
+			dispatch(setInputOption('newCategory', ''));
+			dispatch(setInputOption('originalCategory', ''));
 		} else if (type === 'grammarCategory') {
 			const categoryCollection = collection(db, 'GrammarCategory');
 			addDoc(categoryCollection, {
 				name: inputOption.newCategory,
 				nan: 2,
 			});
+			dispatch(setInputOption('newCategory', ''));
+			dispatch(setInputOption('originalCategory', ''));
 		} else if (type === 'grammarCategoryEdit') {
 			const categoryRef = doc(db, 'GrammarCategory', inputOption.id);
 			updateDoc(categoryRef, {
 				name: inputOption.newCategory,
 			});
+			dispatch(setInputOption('newCategory', ''));
+			dispatch(setInputOption('originalCategory', ''));
 		}
+		dispatch(setStateOption('category', 'all'));
 		navigate(-1);
-		dispatch(clearInputOption());
 	};
 
 	const uploadCondition = () => {

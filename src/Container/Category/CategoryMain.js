@@ -22,7 +22,7 @@ const CategoryMain = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="content-container">
 			<SearchForm type="category" />
 			<CategoryList />
 			<PlusBtn link="/category/upload" />

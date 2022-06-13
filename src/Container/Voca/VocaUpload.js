@@ -30,7 +30,7 @@ const VocaUpload = () => {
 	}, []);
 
 	return (
-		<Row>
+		<Row className="content-container">
 			<Col>
 				<InputTextForm title="단어" optionKey="word" />
 				<InputTextForm title="해석" optionKey="translate" />

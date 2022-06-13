@@ -30,7 +30,7 @@ const VocaEdit = () => {
 	}, []);
 
 	return (
-		<Row>
+		<Row className="content-container">
 			<Col>
 				<InputTextForm title="단어 (필수)" optionKey="word" />
 				<InputTextForm title="해석 (필수)" optionKey="translate" />

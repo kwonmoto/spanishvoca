@@ -29,7 +29,7 @@ const GrammarUpload = () => {
 	}, []);
 
 	return (
-		<Row>
+		<Row className="content-container">
 			<Col>
 				<InputTextForm title="문장" optionKey="sentence" />
 				<InputTextForm title="해석" optionKey="translate" />

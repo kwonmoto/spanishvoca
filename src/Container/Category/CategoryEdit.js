@@ -22,7 +22,7 @@ const CategoryEdit = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="content-container">
 			<SearchForm type="category" />
 			<CategoryEditList />
 			<PlusBtn link="/category/upload" />

@@ -13,7 +13,11 @@ const DeleteIcon = ({ type, row }) => {
 		dispatch(setStateOption('offCanvasDelete', true));
 	};
 
-	return <FontAwesomeIcon icon={faTrash} className="icon" onClick={deleteData} />;
+	return (
+		<div className="icon">
+			<FontAwesomeIcon icon={faTrash} onClick={deleteData} />
+		</div>
+	);
 };
 
 export default DeleteIcon;

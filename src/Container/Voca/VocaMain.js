@@ -22,7 +22,7 @@ const VocaMain = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="content-container">
 			<SearchForm type="voca" />
 			<VocaCard />
 			<PlusBtn link="/voca/upload" />

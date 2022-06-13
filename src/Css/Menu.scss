@@ -121,7 +121,7 @@
 .credit-page {
   @include flex-center();
   width: 100vw;
-  height: 80vh;
+  height: calc(100vh - 105px);
   flex-direction: column;
 
   .row {
