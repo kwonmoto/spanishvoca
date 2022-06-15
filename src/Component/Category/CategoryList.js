@@ -31,9 +31,10 @@ const CategoryList = () => {
 const List = ({ row }) => {
 	const dispatch = useDispatch();
 
+	const wordList = useSelector(state => state.wordReducer);
 	const stateOption = useSelector(state => state.stateOptionReducer);
 
-	const changeCategory = row =>
+	const changeCategory = () =>
 		stateOption.categorySelect !== row.id
 			? dispatch(setStateOption('categorySelect', row.id))
 			: dispatch(setStateOption('categorySelect', ''));
@@ -45,10 +46,15 @@ const List = ({ row }) => {
 			<FontAwesomeIcon icon={faSquare} />
 		);
 
+	const words =
+		' (' +
+		(row.id === 'all' ? wordList : wordList.filter(obj => obj.category === row.id)).length +
+		')';
+
 	return (
-		<div className="List" onClick={() => changeCategory(row)}>
+		<div className="List" onClick={changeCategory}>
 			<div className="checkbox">{checkBox}</div>
-			<div className="name">{row.name}</div>
+			<div className="name">{row.name + words}</div>
 		</div>
 	);
 };

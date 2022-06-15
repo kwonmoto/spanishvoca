@@ -22,9 +22,12 @@ const EditIcon = ({ type, row }) => {
 		if (type === 'Word') {
 			dispatch(setInputOption('word', row.word));
 			dispatch(setInputOption('example', row.example));
-		} else dispatch(setInputOption('sentence', row.sentence));
+			dispatch(setStateOption('category', row.category));
+		} else {
+			dispatch(setInputOption('sentence', row.sentence));
+			dispatch(setStateOption('grammarCategory', row.category));
+		}
 		dispatch(setInputOption('translate', row.translate));
-		dispatch(setStateOption('category', row.category));
 		dispatch(setInputOption('id', row.id));
 		type === 'Word' ? navigate('/voca/edit') : navigate('/grammar/edit');
 	};

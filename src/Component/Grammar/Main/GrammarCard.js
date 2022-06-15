@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../../Css/Main.scss';
-import { logFormat } from '../../../Methods';
+import { logFormat, sortType } from '../../../Methods';
 import DeleteIcon from '../../Icon/DeleteIcon';
 import EditIcon from '../../Icon/EditIcon';
 
@@ -13,25 +13,28 @@ const GrammarCard = () => {
 	const categoryList = [{ id: 'all', name: '모든 목록' }, ...grammarCategory];
 
 	const grammarList = () => {
-		switch (true) {
-			case stateOption.grammarCategory !== 'all' && stateOption.search === '':
-				return grammar.filter(row => row.category === stateOption.grammarCategory);
-			case stateOption.grammarCategory === 'all' && stateOption.search !== '':
-				return grammar.filter(
-					row =>
-						row.sentence.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1 ||
-						row.translate.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1,
-				);
-			case stateOption.grammarCategory !== 'all' && stateOption.search !== '':
-				return grammar.filter(
-					row =>
-						row.category === stateOption.grammarCategory &&
-						(row.sentence.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1 ||
-							row.translate.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1),
-				);
-			default:
-				return grammar;
-		}
+		const filterList = () => {
+			switch (true) {
+				case stateOption.grammarCategory !== 'all' && stateOption.search === '':
+					return grammar.filter(row => row.category === stateOption.grammarCategory);
+				case stateOption.grammarCategory === 'all' && stateOption.search !== '':
+					return grammar.filter(
+						row =>
+							row.sentence.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1 ||
+							row.translate.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1,
+					);
+				case stateOption.grammarCategory !== 'all' && stateOption.search !== '':
+					return grammar.filter(
+						row =>
+							row.category === stateOption.grammarCategory &&
+							(row.sentence.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1 ||
+								row.translate.toLowerCase().indexOf(stateOption.search.toLowerCase()) !== -1),
+					);
+				default:
+					return grammar;
+			}
+		};
+		return sortType(filterList(), stateOption.sort);
 	};
 
 	const rowIncludeCategoryName = row => ({

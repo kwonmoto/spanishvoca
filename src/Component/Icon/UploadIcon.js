@@ -23,6 +23,7 @@ const UploadIcon = ({ type }) => {
 				translate: inputOption.translate,
 				example: inputOption.example,
 				category: stateOption.category,
+				gameStat: { answer: 0, try: 0 },
 				log: new Date(),
 			});
 			dispatch(clearInputOption());
@@ -49,7 +50,7 @@ const UploadIcon = ({ type }) => {
 			updateDoc(grammarRef, {
 				sentence: inputOption.sentence,
 				translate: inputOption.translate,
-				category: stateOption.category,
+				category: stateOption.grammarCategory,
 			});
 			dispatch(clearInputOption());
 		} else if (type === 'category') {

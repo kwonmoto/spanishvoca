@@ -1,16 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './Css/App.css';
 import db from './firebase';
-import VocaMain from './Container/Voca/VocaMain';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import BottomNav from './Container/BottomNav';
-import VocaUpload from './Container/Voca/VocaUpload';
-import TopNav from './Container/TopNav';
-import CategoryMain from './Container/Category/CategoryMain';
-import CategoryUpload from './Container/Category/CategoryUpload';
-import GrammarMain from './Container/Grammar/GrammarMain';
-import GrammarCategoryMain from './Container/GrammarCategory/GrammarCategoryMain';
-import GrammarUpload from './Container/Grammar/GrammarUpload';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,29 +10,51 @@ import { getGrammarCategoryList } from './redux/Data/GrammarCategory/reducer';
 import { getWordList } from './redux/Data/Word/reducer';
 import { getGrammarList } from './redux/Data/Grammar/reducer';
 import { setStateOption } from './redux/State/StateOption/reducer';
-import GrammarCategoryUpload from './Container/GrammarCategory/GrammarCategoryUpload';
-import Credit from './Container/Credit';
-import OffCanvasMenu from './Container/OffCanvasMenu';
-import GrammarCategoryEdit from './Container/GrammarCategory/GrammarCategoryEdit';
-import GrammarCategoryEditUpload from './Container/GrammarCategory/GrammarCategoryEditUpload';
-import CategoryEdit from './Container/Category/CategoryEdit';
-import CategoryEditUpload from './Container/Category/CategoryEditUpload';
-import OffCanvasDelete from './Container/OffCanvasDelete';
-import VocaEdit from './Container/Voca/VocaEdit';
-import GrammarEdit from './Container/Grammar/GrammarEdit';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import LoadingPage from './Container/LoadingPage';
+import BottomNav from './Container/BottomNav';
+import TopNav from './Container/TopNav';
+import OffCanvasMenu from './Container/OffCanvasMenu';
+import OffCanvasDelete from './Container/OffCanvasDelete';
+import VocaMain from './Container/Voca/VocaMain';
+import VocaUpload from './Container/Voca/VocaUpload';
+import VocaEdit from './Container/Voca/VocaEdit';
+import CategoryMain from './Container/Category/CategoryMain';
+import CategoryUpload from './Container/Category/CategoryUpload';
+import CategoryEdit from './Container/Category/CategoryEdit';
+import CategoryEditUpload from './Container/Category/CategoryEditUpload';
+import GrammarMain from './Container/Grammar/GrammarMain';
+import GrammarUpload from './Container/Grammar/GrammarUpload';
+import GrammarEdit from './Container/Grammar/GrammarEdit';
+import GrammarCategoryMain from './Container/GrammarCategory/GrammarCategoryMain';
+import GrammarCategoryUpload from './Container/GrammarCategory/GrammarCategoryUpload';
+import GrammarCategoryEdit from './Container/GrammarCategory/GrammarCategoryEdit';
+import GrammarCategoryEditUpload from './Container/GrammarCategory/GrammarCategoryEditUpload';
+import Credit from './Container/Credit';
+import GameMain from './Container/Game/GameMain';
+import GamePlay from './Container/Game/GamePlay';
+import GameResult from './Container/Game/GameResult';
 
 function App() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const location = useLocation();
 
 	const loading = useSelector(state => state.stateOptionReducer).loading;
 
 	useEffect(() => {
+		navigate('/');
 		const wordCollection = query(collection(db, 'Word'), orderBy('log', 'desc'));
 		onSnapshot(wordCollection, snapshot => {
-			dispatch(getWordList(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))));
+			dispatch(
+				getWordList(
+					snapshot.docs.map(doc => ({
+						...doc.data(),
+						gameStat: doc.data().gameStat ?? { answer: 0, try: 0 },
+						id: doc.id,
+					})),
+				),
+			);
 		});
 		const wordCategoryCollection = query(
 			collection(db, 'WordCategory'),
@@ -96,8 +109,9 @@ function App() {
 								<Route path="/grammarcategory/upload" element={<GrammarCategoryUpload />} />
 								<Route path="/grammarcategory/edit" element={<GrammarCategoryEdit />} />
 								<Route path="/grammarcategory/editupload" element={<GrammarCategoryEditUpload />} />
-								<Route path="/game" element={<VocaMain />} />
-								<Route path="/game/play" element={<VocaMain />} />
+								<Route path="/game" element={<GameMain />} />
+								<Route path="/game/play" element={<GamePlay />} />
+								<Route path="/game/result" element={<GameResult />} />
 								<Route path="/credit" element={<Credit />} />
 							</Routes>
 						</CSSTransition>

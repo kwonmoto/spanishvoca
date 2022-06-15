@@ -9,6 +9,9 @@ import UploadIcon from '../Component/Icon/UploadIcon';
 import GoBackUploadIcon from '../Component/Icon/GoBackUploadIcon';
 import SelectCategoryIcon from '../Component/Icon/SelectCategoryIcon';
 import TitleIcon from '../Component/Icon/TitleIcon';
+import GameStartIcon from '../Component/Icon/GameStartIcon';
+import GoNavigateIcon from '../Component/Icon/GoNavigateIcon';
+import GoHomeIcon from '../Component/Icon/GoHomeIcon';
 
 const TopNav = () => {
 	const stateOption = useSelector(state => state.stateOptionReducer);
@@ -133,6 +136,30 @@ const TopNav = () => {
 		</>
 	);
 
+	const gameMain = (
+		<>
+			<GoHomeIcon />
+			<TitleIcon title="게임 카테고리 설정" />
+			<GameStartIcon />
+		</>
+	);
+
+	const gamePlay = (
+		<>
+			<GoBackIcon />
+			<TitleIcon title="게임 플레이" />
+			<div className="icon" />
+		</>
+	);
+
+	const gameResult = (
+		<>
+			<div className="icon" />
+			<TitleIcon title="게임 결과" />
+			<GoNavigateIcon />
+		</>
+	);
+
 	const topNav = () => {
 		switch (stateOption.page) {
 			case 'vocaMain':
@@ -163,6 +190,12 @@ const TopNav = () => {
 				return grammarCategoryEdit;
 			case 'grammarCategoryEditUpload':
 				return grammarCategoryEditUpload;
+			case 'gameMain':
+				return gameMain;
+			case 'gamePlay':
+				return gamePlay;
+			case 'gameResult':
+				return gameResult;
 			case 'credit':
 				return credit;
 			default:

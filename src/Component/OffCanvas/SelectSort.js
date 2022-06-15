@@ -28,6 +28,9 @@ const SelectSort = () => {
 				<option key="zyx" value="zyx">
 					단어 내림차순
 				</option>
+				<option key="random" value="random">
+					랜덤
+				</option>
 			</select>
 			<p>▼</p>
 		</div>

@@ -28,7 +28,7 @@ const SelectGrammarCategory = () => {
 
 	useEffect(() => {
 		category.find(row => row.id === stateOption.category) === undefined &&
-			dispatch(setStateOption('category', 'all'));
+			dispatch(setStateOption('grammarCategory', 'all'));
 	}, []);
 
 	return (

@@ -13,7 +13,9 @@ const VocaMain = () => {
 
 	// 초기 세팅 함수
 	const changeState = () => {
+		dispatch(setStateOption('sort', 'latest'));
 		dispatch(setStateOption('page', 'vocaMain'));
+		dispatch(setStateOption('category', 'all'));
 	};
 
 	// 마운트 시 한 번만 실행

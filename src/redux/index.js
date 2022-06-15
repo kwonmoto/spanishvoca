@@ -5,6 +5,7 @@ import inputOptionReducer from './State/InputOption/reducer';
 import categoryReducer from './Data/Category/reducer';
 import grammarReducer from './Data/Grammar/reducer';
 import grammarCategoryReducer from './Data/GrammarCategory/reducer';
+import gameArrayReducer from './State/GameArray/reducer';
 
 const rootReducer = combineReducers({
 	stateOptionReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	categoryReducer,
 	grammarReducer,
 	grammarCategoryReducer,
+	gameArrayReducer,
 });
 
 export default rootReducer;
