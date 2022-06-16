@@ -6,6 +6,7 @@ const SelectSort = () => {
 	const dispatch = useDispatch();
 
 	// sort
+	const page = useSelector(state => state.stateOptionReducer).page;
 	const sort = useSelector(state => state.stateOptionReducer).sort;
 
 	const handleSelect = e => {
@@ -28,6 +29,16 @@ const SelectSort = () => {
 				<option key="zyx" value="zyx">
 					단어 내림차순
 				</option>
+				{page === 'vocaMain' && (
+					<>
+						<option key="statAsc" value="statAsc">
+							정답률 오름차순
+						</option>
+						<option key="statDesc" value="statDesc">
+							정답률 내림차순
+						</option>
+					</>
+				)}
 				<option key="random" value="random">
 					랜덤
 				</option>

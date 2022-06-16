@@ -65,6 +65,9 @@ const Card = ({ row }) => {
 		<div className="Card" onClick={onClick}>
 			<div className="control">
 				{row.gameStat.try !== 0 && <p className="log">{correctRate}</p>}
+				{row.gameStat.try !== 0 && (
+					<p className="log">{row.gameStat.answer + '/' + row.gameStat.try}</p>
+				)}
 				<p className="log">{logFormat(row.log.toDate())}</p>
 				<EditIcon type="Word" row={row} />
 				<DeleteIcon type="Word" row={row} />

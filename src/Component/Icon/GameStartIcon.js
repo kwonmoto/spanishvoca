@@ -16,12 +16,12 @@ const GameStartIcon = () => {
 				: wordList.filter(row => row.category === stateOption.category);
 
 		const zeroTryArray = arr => {
-			return arr.filter(row => row.gameStat.try === 0).sort((a, b) => Math.random() - 0.5);
+			return arr.filter(row => row.gameStat.try === 0).sort(() => Math.random() - 0.5);
 		};
 
-		const sortArray = arr => {
+		const belowFiftyArray = arr => {
 			return arr
-				.filter(row => row.gameStat.try !== 0)
+				.filter(row => row.gameStat.try !== 0 && row.gameStat.answer / row.gameStat.try <= 0.5)
 				.sort((a, b) => {
 					const aRate = a.gameStat.answer / a.gameStat.try;
 					const bRate = b.gameStat.answer / b.gameStat.try;
@@ -32,23 +32,40 @@ const GameStartIcon = () => {
 				});
 		};
 
+		const moreFiftyArray = arr => {
+			return arr
+				.filter(row => row.gameStat.try !== 0 && row.gameStat.answer / row.gameStat.try > 0.5)
+				.sort(() => Math.random() - 0.5);
+		};
+
 		const zeroLength = zeroTryArray(filterWord).length;
-		const sortLength = sortArray(filterWord).length;
+		const belowFiftyLength = belowFiftyArray(filterWord).length;
+		const moreFiftyLength = moreFiftyArray(filterWord).length;
 
 		const returnArray = () => {
 			const returnZeroLength = () => {
-				if (zeroLength < 6) return zeroLength;
-				else if (sortLength > 6) return 5;
-				else return 10 - sortLength;
+				if (zeroLength <= 5) return zeroLength;
+				else if (belowFiftyLength + moreFiftyLength >= 5) return 5;
+				else return 10 - (belowFiftyLength + moreFiftyLength);
 			};
-			const returnSortLength = () => {
-				if (sortLength < 6) return sortLength;
-				else if (zeroLength > 6) return 5;
-				else return 10 - zeroLength;
+			const returnBelowFiftyLength = () => {
+				const remainLength = 10 - returnZeroLength();
+				const defaultLength = parseInt(remainLength / 2) + (remainLength % 2);
+				if (belowFiftyLength <= defaultLength) return belowFiftyLength;
+				else if (moreFiftyLength >= defaultLength) return defaultLength;
+				else return remainLength - moreFiftyLength;
+			};
+			const returnMoreFifyLength = () => {
+				const remainLength = 10 - returnZeroLength();
+				const defaultLength = parseInt(remainLength / 2);
+				if (moreFiftyLength <= defaultLength) return belowFiftyLength;
+				else if (belowFiftyLength >= defaultLength) return defaultLength;
+				else return remainLength - belowFiftyLength;
 			};
 			return [
 				...zeroTryArray(filterWord).slice(0, returnZeroLength()),
-				...sortArray(filterWord).slice(0, returnSortLength()),
+				...belowFiftyArray(filterWord).slice(0, returnBelowFiftyLength()),
+				...moreFiftyArray(filterWord).slice(0, returnMoreFifyLength()),
 			];
 		};
 

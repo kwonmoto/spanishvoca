@@ -24,6 +24,19 @@ const GameMain = () => {
 	return (
 		<div className="content-container" style={{ marginTop: '30px' }}>
 			<SelectCategory />
+			<div
+				style={{
+					background: 'rgb(243, 243, 243)',
+					margin: '30px 50px',
+					padding: '10px',
+					borderRadius: '20px',
+				}}
+			>
+				<h3>단어 게임 기본 출제 비율</h3>
+				<p>미출제: 5문제</p>
+				<p>정답률 50% 이하: 3문제</p>
+				<p>정답률 50% 이상: 2문제</p>
+			</div>
 		</div>
 	);
 };

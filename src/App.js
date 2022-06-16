@@ -66,7 +66,15 @@ function App() {
 		});
 		const grammarCollection = query(collection(db, 'Grammar'), orderBy('log', 'desc'));
 		onSnapshot(grammarCollection, snapshot => {
-			dispatch(getGrammarList(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))));
+			dispatch(
+				getGrammarList(
+					snapshot.docs.map(doc => ({
+						...doc.data(),
+						gameStat: doc.data().gameStat ?? { answer: 0, try: 0 },
+						id: doc.id,
+					})),
+				),
+			);
 		});
 		const grammarCategoryCollection = query(
 			collection(db, 'GrammarCategory'),
