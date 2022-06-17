@@ -15,7 +15,6 @@ const GrammarMain = () => {
 	const changeState = () => {
 		dispatch(setStateOption('sort', 'latest'));
 		dispatch(setStateOption('page', 'grammarMain'));
-		dispatch(setStateOption('grammarCategory', 'all'));
 	};
 
 	// 마운트 시 한 번만 실행
