@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import InputTextForm from '../../Component/InputForm/InputTextForm';
 import { setStateOption } from '../../redux/State/StateOption/reducer';
@@ -29,13 +28,11 @@ const CategoryUpload = () => {
 	}, []);
 
 	return (
-		<Row className="content-container">
-			<Col>
-				<InputTextForm title="카테고리 이름을 입력해주세요." optionKey="newCategory" />
-				<WarningMessage message="중복된 카테고리가 있습니다." condition={condition} />
-				<WarningMessage message="이름을 입력해주세요." condition={isNanCondition} />
-			</Col>
-		</Row>
+		<div className="content-container">
+			<InputTextForm title="카테고리 이름을 입력해주세요." optionKey="newCategory" />
+			<WarningMessage message="중복된 카테고리가 있습니다." condition={condition} />
+			<WarningMessage message="이름을 입력해주세요." condition={isNanCondition} />
+		</div>
 	);
 };
 

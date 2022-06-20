@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import InputTextForm from '../../Component/InputForm/InputTextForm';
 import SelectCategory from '../../Component/Voca/Upload/SelectCategory';
@@ -30,19 +29,17 @@ const VocaEdit = () => {
 	}, []);
 
 	return (
-		<Row className="content-container">
-			<Col>
-				<InputTextForm title="단어 (필수)" optionKey="word" />
-				<InputTextForm title="해석 (필수)" optionKey="translate" />
-				<InputTextForm title="예문" optionKey="example" />
-				<SelectCategory />
-				<WarningMessage message="단어와 해석을 입력해주세요." condition={isNanCondition} />
-				<WarningMessage
-					message="중복된 단어가 있습니다. 그래도 등록하시겠습니까?"
-					condition={condition}
-				/>
-			</Col>
-		</Row>
+		<div className="content-container">
+			<InputTextForm title="단어 (필수)" optionKey="word" />
+			<InputTextForm title="해석 (필수)" optionKey="translate" />
+			<InputTextForm title="예문" optionKey="example" />
+			<SelectCategory />
+			<WarningMessage message="단어와 해석을 입력해주세요." condition={isNanCondition} />
+			<WarningMessage
+				message="중복된 단어가 있습니다. 그래도 등록하시겠습니까?"
+				condition={condition}
+			/>
+		</div>
 	);
 };
 
