@@ -2,9 +2,20 @@
 
 # dependencies
 /node_modules
+/.firebase
+/.github/workflows
+/.vscode
 /.pnp
 .pnp.js
 firebase.js
+firebase.json
+firestore.indexes.json
+firestore.rules
+package-lock.json
+package.json
+tsconfig.json
+workbox-config.js
+yarn.lock
 .firebaserc
 
 # testing
