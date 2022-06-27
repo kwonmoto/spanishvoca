@@ -1,18 +1,19 @@
 const GET_WORD = 'GET_WORD' as const;
 
-type GameStat = {
+interface GameStat {
 	answer: number;
 	try: number;
-};
+}
 
-type WordRow = {
+export interface WordRow {
 	id: string;
-	category: string;
-	translate: string;
-	word: string;
+	category?: string;
+	translate?: string;
+	word?: string;
 	gameStat: GameStat;
-	example: string;
-};
+	example?: string;
+	log?: Date;
+}
 
 type WordArray = WordRow[];
 

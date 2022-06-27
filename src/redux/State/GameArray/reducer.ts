@@ -1,8 +1,10 @@
+import { WordRow } from '../../Data/Word/reducer';
+
 const SET_GAME_ARRAY = 'SET_GAME_ARRAY' as const;
 const SET_GAME_ARRAY_KEY = 'SET_GAME_ARRAY_KEY' as const;
 const CLEAR_GAME_ARRAY = 'CLEAR_GAME_ARRAY' as const;
 
-export const setGameArray = (payload: string | boolean) => ({
+export const setGameArray = (payload: GameRow[]) => ({
 	type: SET_GAME_ARRAY,
 	payload,
 });
@@ -23,27 +25,11 @@ type GameArrayAction =
 	| ReturnType<typeof setGameArrayKey>
 	| ReturnType<typeof clearGameArray>;
 
-type GameStat = {
-	answer: number;
-	try: number;
-};
-
-// type TimeStamp = {
-// 	answer: number;
-// 	try: number;
-// };
-
-type GameRow = {
-	id: string;
-	category: string;
-	translate: string;
-	word: string;
-	gameStat: GameStat;
-	example: string;
+export interface GameRow extends WordRow {
+	categoryName?: string;
 	gameNum: number;
-	// log: TimeStamp;
 	correct: boolean;
-};
+}
 
 type GameArray = GameRow[];
 

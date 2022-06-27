@@ -11,39 +11,46 @@ export const clearInputOption = () => ({
 	type: CLEAR_WORD_INPUT,
 });
 
-type WordInputOptionAction =
-	| ReturnType<typeof setInputOption>
-	| ReturnType<typeof clearInputOption>;
+export type InputOptionKey =
+	| 'word'
+	| 'sentence'
+	| 'translate'
+	| 'example'
+	| 'originalCategory'
+	| 'newCategory'
+	| 'id'
+	| 'type';
 
-type WordInputOption = {
-	word: string;
+type InputOptionAction = ReturnType<typeof setInputOption> | ReturnType<typeof clearInputOption>;
+
+interface InputOption {
+	word?: string;
 	translate: string;
 	example: string;
-	sentence: string;
+	sentence?: string;
+	originalCategory: string;
 	newCategory: string;
 	id: string;
 	type: string;
-};
+}
 
-const wordInputOption: WordInputOption = {
+const inputOption: InputOption = {
 	word: '',
 	translate: '',
 	example: '',
 	sentence: '',
+	originalCategory: '',
 	newCategory: '',
 	id: '',
 	type: '',
 };
 
-const inputOptionReducer = (
-	state: WordInputOption = wordInputOption,
-	action: WordInputOptionAction,
-) => {
+const inputOptionReducer = (state: InputOption = inputOption, action: InputOptionAction) => {
 	switch (action.type) {
 		case SET_WORD_INPUT:
 			return { ...state, [action.key]: action.payload };
 		case CLEAR_WORD_INPUT:
-			return wordInputOption;
+			return inputOption;
 		default:
 			return state;
 	}

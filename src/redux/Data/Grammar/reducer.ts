@@ -1,18 +1,19 @@
 const GET_GRAMMAR = 'GET_GRAMMAR' as const;
 
-type GameStat = {
+interface GameStat {
 	answer: number;
 	try: number;
-};
+}
 
-type GrammarRow = {
+export interface GrammarRow {
 	id: string;
-	category: string;
-	translate: string;
-	sentence: string;
+	category?: string;
+	translate?: string;
+	sentence?: string;
 	gameStat: GameStat;
-	example: string;
-};
+	example?: string;
+	log?: Date;
+}
 
 type GrammarArray = GrammarRow[];
 

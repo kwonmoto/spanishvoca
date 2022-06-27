@@ -1,24 +1,18 @@
+import { CategoryArray } from '../Category/reducer';
+
 const GET_GRAMMAR_CATEGORY = 'GET_GRAMMAR_CATEGORY' as const;
 
-type GrammarCategoryRow = {
-	id: string;
-	name: string;
-	nan: 1 | 2;
-};
-
-type GrammarCategoryArray = GrammarCategoryRow[];
-
-export const getGrammarCategoryList = (payload: GrammarCategoryArray) => ({
+export const getGrammarCategoryList = (payload: CategoryArray) => ({
 	type: GET_GRAMMAR_CATEGORY,
 	payload,
 });
 
 type GrammarCategoryAction = ReturnType<typeof getGrammarCategoryList>;
 
-const categoryList: GrammarCategoryArray = [];
+const categoryList: CategoryArray = [];
 
 const grammarCategoryReducer = (
-	state: GrammarCategoryArray = categoryList,
+	state: CategoryArray = categoryList,
 	action: GrammarCategoryAction,
 ) => {
 	switch (action.type) {

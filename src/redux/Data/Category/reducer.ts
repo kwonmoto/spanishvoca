@@ -1,12 +1,12 @@
 const GET_CATEGORY = 'GET_CATEGORY' as const;
 
-type CategoryRow = {
+export interface CategoryRow {
 	id: string;
 	name: string;
 	nan: 1 | 2;
-};
+}
 
-type CategoryArray = CategoryRow[];
+export type CategoryArray = CategoryRow[];
 
 export const getCategoryList = (payload: CategoryArray) => ({ type: GET_CATEGORY, payload });
 
