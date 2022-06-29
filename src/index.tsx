@@ -12,7 +12,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 const logger = createLogger();
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
+const store = createStore(rootReducer);
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
 
 // const store = createStore(rootReducer, composeWithDevTools());
 

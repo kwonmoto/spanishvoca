@@ -47,9 +47,7 @@ const GameStartIcon = () => {
 
 		const returnArray = () => {
 			const returnZeroLength = () => {
-				if (zeroLength <= 5) return zeroLength;
-				else if (belowFiftyLength + moreFiftyLength >= 5) return 5;
-				else return 10 - (belowFiftyLength + moreFiftyLength);
+				return Math.min(10, zeroLength);
 			};
 			const returnBelowFiftyLength = () => {
 				const remainLength = 10 - returnZeroLength();
@@ -69,7 +67,7 @@ const GameStartIcon = () => {
 				...zeroTryArray(filterWord).slice(0, returnZeroLength()),
 				...belowFiftyArray(filterWord).slice(0, returnBelowFiftyLength()),
 				...moreFiftyArray(filterWord).slice(0, returnMoreFifyLength()),
-			];
+			].sort(() => Math.random() - 0.5);
 		};
 
 		return returnArray().map((row, i) => ({ ...row, gameNum: i, correct: false }));

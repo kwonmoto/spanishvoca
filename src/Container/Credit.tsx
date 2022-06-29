@@ -37,7 +37,7 @@ const Credit = () => {
 					<img src={Instagram} alt="instagram" />
 				</a>
 			</div>
-			<p>Build: 2022.06.27</p>
+			<p>Build: 2022.06.29</p>
 		</div>
 	);
 };
