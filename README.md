@@ -3,7 +3,7 @@
 단어 공부를 위해 제작된 단어장입니다.
 레포지토리 이름은 spanishvoca이지만, 스페인어가 아니어도 저장 가능하게 제작되었습니다.
 
-Service Link: https://github.com/kwonmoto/spanishvoca
+Service Link: https://vocabulary-1206f.web.app/
 
 ## 이 프로그램은 다음의 기능들을 포함하고 있습니다.
 
