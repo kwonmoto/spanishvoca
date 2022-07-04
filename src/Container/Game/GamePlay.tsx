@@ -22,14 +22,12 @@ const GamePlay = () => {
 
 	// 초기 세팅 함수
 	const changeState = () => {
+		gameArray.length === 0 && navigate('/game');
 		dispatch(setStateOption('page', 'gamePlay'));
 	};
 
 	// 마운트 시 한 번만 실행
-	useEffect(() => {
-		gameArray.length === 0 && navigate('/game');
-		changeState();
-	}, []);
+	useEffect(changeState, []);
 
 	return (
 		<div className="content-container">

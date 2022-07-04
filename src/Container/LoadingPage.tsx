@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../Image/logo512.png';
+import logo from '../Image/loadinglogo.png';
 
 const LoadingPage = () => {
 	return (

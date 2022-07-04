@@ -29,9 +29,7 @@ const GrammarCategoryEditUpload = () => {
 	const isNanCondition = inputOption.newCategory === '';
 
 	// 마운트 시 한 번만 실행
-	useEffect(() => {
-		changeState();
-	}, []);
+	useEffect(changeState, []);
 
 	return (
 		<div className="content-container">
