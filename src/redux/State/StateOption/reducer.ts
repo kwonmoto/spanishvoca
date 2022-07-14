@@ -51,6 +51,7 @@ interface StateOption {
 	loading: boolean;
 	deleteModal: boolean;
 	gameNum: number;
+	nowIndex: number;
 }
 
 const stateOption: StateOption = {
@@ -68,6 +69,7 @@ const stateOption: StateOption = {
 	loading: true,
 	deleteModal: false,
 	gameNum: 0,
+	nowIndex: 10,
 };
 
 const stateOptionReducer = (state: StateOption = stateOption, action: StateOptionAction) => {

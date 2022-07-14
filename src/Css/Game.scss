@@ -3,7 +3,7 @@
     flex-direction: column;
     border: none;
     border-radius: 20px;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(180, 226, 255);
     color: rgb(67, 67, 67);
     width: 85%;
     height: 50%;
@@ -14,7 +14,7 @@
     justify-content: center;
 
     &:hover {
-        background-color: rgb(229, 229, 229);
+        background-color: rgb(151, 189, 213);
     }
 
 }
@@ -35,7 +35,7 @@
         width: 50px;  
         height: 50px;
         border-radius: 30%;
-        background-color: black;
+        background-color: rgb(0, 26, 91);
         color: white;
         display: flex;
         justify-content: center;
@@ -46,39 +46,6 @@
             background-color: rgb(124, 124, 124);
         }
   }
-}
-
-.Card {
-    display: inline-block;
-    border: 1px none;
-    border-radius: 20px;
-    background-color: rgb(243, 243, 243);
-    color: rgb(67, 67, 67);
-    width: 95%;
-    margin: 10px;
-    padding: 10px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: rgb(229, 229, 229);
-    }
-    
-    h2 {
-        text-align: left;
-        padding: 0px;
-        margin: 15px 20px;
-    }
-
-    h3 {
-        text-align: left;
-        padding: 0px;
-        margin: 15px 20px;
-    }
-
-    h5 {
-        text-align: left;
-        margin: 10px 20px;
-    }
 }
 
 @mixin result-card() {

@@ -1,10 +1,14 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import '../../../Css/Main.scss';
 import { logFormat, sortGrammar } from '../../../Methods';
 import { RootState } from '../../../redux';
 import { GrammarRow } from '../../../redux/Data/Grammar/reducer';
+import { setStateOption } from '../../../redux/State/StateOption/reducer';
 import DeleteIcon from '../../Icon/DeleteIcon';
 import EditIcon from '../../Icon/EditIcon';
 
@@ -13,6 +17,7 @@ interface GrammarCardRow extends GrammarRow {
 }
 
 interface Props {
+	last: boolean;
 	row: GrammarCardRow;
 }
 
@@ -45,7 +50,7 @@ const GrammarCard = () => {
 					return grammar;
 			}
 		};
-		return sortGrammar(filterList(), stateOption.sort);
+		return sortGrammar(filterList(), stateOption.sort).slice(0, stateOption.nowIndex);
 	};
 
 	const rowIncludeCategoryName = (row: GrammarRow) => ({
@@ -55,20 +60,39 @@ const GrammarCard = () => {
 
 	return (
 		<>
-			{grammarList().map((row: GrammarRow) => {
-				return <Card key={row.id} row={rowIncludeCategoryName(row)} />;
+			{grammarList().map((row: GrammarRow, i: Number) => {
+				return (
+					<Card
+						key={row.id}
+						last={i === stateOption.nowIndex - 1}
+						row={rowIncludeCategoryName(row)}
+					/>
+				);
 			})}
 		</>
 	);
 };
 
-const Card: React.FC<Props> = ({ row }) => {
+const Card: React.FC<Props> = ({ row, last }) => {
+	const stateOption = useSelector((state: RootState) => state.stateOptionReducer);
+	const dispatch = useDispatch();
 	const [show, setShow] = useState(false);
+
+	const [ref, inView] = useInView();
+
+	useEffect(() => {
+		// 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+		if (inView) {
+			dispatch(setStateOption('nowIndex', stateOption.nowIndex + 10));
+		}
+	}, [inView]);
+
+	const isLast = last ? ref : () => {};
 
 	const onClick = () => setShow(!show);
 
 	return (
-		<div className="Card" onClick={onClick}>
+		<div className="Card" onClick={onClick} ref={isLast}>
 			<div className="control">
 				<EditIcon type="Grammar" row={row} />
 				<DeleteIcon type="Grammar" row={row} />

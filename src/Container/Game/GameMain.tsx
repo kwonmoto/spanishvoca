@@ -25,7 +25,7 @@ const GameMain = () => {
 			<SelectCategory />
 			<div
 				style={{
-					background: 'rgb(243, 243, 243)',
+					background: 'rgb(180, 226, 255)',
 					margin: '30px 50px',
 					padding: '10px',
 					borderRadius: '20px',

@@ -9,13 +9,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/index';
 import { createLogger } from 'redux-logger';
 import { BrowserRouter } from 'react-router-dom';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const logger = createLogger();
 
-const store = createStore(rootReducer);
-// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
-
-// const store = createStore(rootReducer, composeWithDevTools());
+// const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -28,6 +27,8 @@ root.render(
 		</Provider>
 	</React.StrictMode>,
 );
+
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -33,17 +33,17 @@ div {
 
 .Card {
     display: inline-block;
-    border: 1px none;
+    border: none;
     border-radius: 20px;
-    background-color: rgb(243, 243, 243);
-    color: rgb(67, 67, 67);
+    background-color: rgb(207, 237, 255);
+    color: rgb(0, 26, 91);
     width: 95%;
     margin: 10px;
     padding: 10px;
     cursor: pointer;
 
     &:hover {
-        background-color: rgb(229, 229, 229);
+        background-color: rgb(130, 163, 183);
     }
 
     .control {
