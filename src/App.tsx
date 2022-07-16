@@ -45,6 +45,30 @@ function App() {
 
 	useEffect(() => {
 		navigate('/');
+		const wordCategoryCollection = query(
+			collection(db, 'WordCategory'),
+			orderBy('nan', 'asc'),
+			orderBy('name', 'asc'),
+		);
+		onSnapshot(wordCategoryCollection, snapshot => {
+			dispatch(
+				getCategoryList(
+					snapshot.docs.map(doc => ({ id: doc.id, name: doc.data().name, nan: doc.data().nan })),
+				),
+			);
+		});
+		const grammarCategoryCollection = query(
+			collection(db, 'GrammarCategory'),
+			orderBy('nan', 'asc'),
+			orderBy('name', 'asc'),
+		);
+		onSnapshot(grammarCategoryCollection, snapshot => {
+			dispatch(
+				getGrammarCategoryList(
+					snapshot.docs.map(doc => ({ id: doc.id, name: doc.data().name, nan: doc.data().nan })),
+				),
+			);
+		});
 		const wordCollection = query(collection(db, 'Word'), orderBy('log', 'desc'));
 		onSnapshot(wordCollection, snapshot => {
 			dispatch(
@@ -58,18 +82,6 @@ function App() {
 				),
 			);
 		});
-		const wordCategoryCollection = query(
-			collection(db, 'WordCategory'),
-			orderBy('nan', 'asc'),
-			orderBy('name', 'asc'),
-		);
-		onSnapshot(wordCategoryCollection, snapshot => {
-			dispatch(
-				getCategoryList(
-					snapshot.docs.map(doc => ({ id: doc.id, name: doc.data().name, nan: doc.data().nan })),
-				),
-			);
-		});
 		const grammarCollection = query(collection(db, 'Grammar'), orderBy('log', 'desc'));
 		onSnapshot(grammarCollection, snapshot => {
 			dispatch(
@@ -80,18 +92,6 @@ function App() {
 						log: doc.data().log.toDate(),
 						id: doc.id,
 					})),
-				),
-			);
-		});
-		const grammarCategoryCollection = query(
-			collection(db, 'GrammarCategory'),
-			orderBy('nan', 'asc'),
-			orderBy('name', 'asc'),
-		);
-		onSnapshot(grammarCategoryCollection, snapshot => {
-			dispatch(
-				getGrammarCategoryList(
-					snapshot.docs.map(doc => ({ id: doc.id, name: doc.data().name, nan: doc.data().nan })),
 				),
 			);
 		});
